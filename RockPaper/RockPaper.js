@@ -1,7 +1,4 @@
 function playRound(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toUpperCase();
-  computerSelection = computerSelection.toUpperCase();
-
   if (playerSelection === 'ROCK') {
     return computerSelection === 'PAPER'
       ? 'LOSE!'
@@ -50,23 +47,21 @@ function printWinner(winner) {
   h1.textContent = winner;
   h1.style.color = 'coral';
   body.appendChild(h1);
-  console.log('💻Dankholm:', computerSelection, '\n😎Player:', playerSelection);
-
+  // console.log('💻Dankholm:', computerSelection, '\n😎Player:', play);
   return winner;
 }
 
-button1 = document.querySelector('.b1')
-button2 = document.querySelector('.b2')
-button3 = document.querySelector('.b3')
+button1 = document.querySelector('.b1');
+button2 = document.querySelector('.b2');
+button3 = document.querySelector('.b3');
 
-button1.addEventListener('click', buttonSelection)
-button2.addEventListener('click', buttonSelection)
-button3.addEventListener('click', buttonSelection)
+button1.addEventListener('click', play);
+button2.addEventListener('click', play);
+button3.addEventListener('click', play);
 
-let playerSelection = 'paper';
-playerSelection = buttonSelection()
-function buttonSelection(e) {
-  console.log(e.target.innerText.toUpperCase());
+const computerSelection = computerPlay().toUpperCase();
+
+function play(e) {
+  // console.log(e.target.innerText.toUpperCase());
+  printWinner(playRound(e.target.innerText.toUpperCase(), computerSelection));
 }
-const computerSelection = computerPlay();
-printWinner(playRound(playerSelection, computerSelection));
