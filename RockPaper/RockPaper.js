@@ -44,7 +44,29 @@ function computerPlay() {
   }
 }
 
-const playerSelection = prompt('ROCK PAPER SCISSORS', 'rock');
+function printWinner(winner) {
+  const body = document.querySelector('body');
+  const h1 = document.createElement('h1');
+  h1.textContent = winner;
+  h1.style.color = 'coral';
+  body.appendChild(h1);
+  console.log('💻Dankholm:', computerSelection, '\n😎Player:', playerSelection);
+
+  return winner;
+}
+
+button1 = document.querySelector('.b1')
+button2 = document.querySelector('.b2')
+button3 = document.querySelector('.b3')
+
+button1.addEventListener('click', buttonSelection)
+button2.addEventListener('click', buttonSelection)
+button3.addEventListener('click', buttonSelection)
+
+let playerSelection = 'paper';
+playerSelection = buttonSelection()
+function buttonSelection(e) {
+  console.log(e.target.innerText.toUpperCase());
+}
 const computerSelection = computerPlay();
-console.log('Dankholm:', computerSelection, '|', 'Player:', playerSelection);
-console.warn(playRound(playerSelection, computerSelection));
+printWinner(playRound(playerSelection, computerSelection));
