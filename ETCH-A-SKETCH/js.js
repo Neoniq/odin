@@ -1,17 +1,30 @@
 // SELECTORS
-const grid = document.querySelector('.grid');
+const grid = document.querySelector('.grid')
+const colorVar = '--grid-size'
+const gridSlider = document.getElementById('slider')
+const greenBtn = document.querySelector('button')
 
-// CREATED ELEMENTS
-const square = document.createElement('div');
-square.classList.add('square');
-square.textContent = 'This is the glorious text-content!';
+function setupGrid(size) {
+  grid.replaceChildren()
+  grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+  grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
+  console.log('SetupGrid:', size + "=" + (size * size))
 
-function buildGrid(size) {
-  for (i = 0; i < size; i++) {
-    grid.appendChild(square);
-    grid.appendChild(square);
+  for (let i = 0; i < size * size; i++) {
+    const gridElement = document.createElement('div')
+    gridElement.classList.add('grid-element')
+    gridElement.addEventListener('mouseover', changeColor)
+    gridElement.addEventListener('mousedown', changeColor)
+    grid.appendChild(gridElement)
     console.log(i);
   }
 }
+setupGrid(16)
 
-buildGrid(16);
+function changeColor(params) {}
+
+gridSlider.addEventListener('change', (e) => {
+  // console.log(e, 'asd')
+  const size = e.target.valueAsNumber
+  setupGrid(size)
+})
